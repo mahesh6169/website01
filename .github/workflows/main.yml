@@ -16,7 +16,7 @@ jobs:
     - name: Set up SSH key
       uses: webfactory/ssh-agent@v0.5.4
       with:
-        ssh-private-key: ${{secrets.GITRSYNCH_VCSAJMPHOST}}
+        ssh-private-key: ${{ secrets.GITRSYNCH_VCSAJMPHOST }}
 
     - name: Rsync files to the server
       run: rsync -avz -e "ssh -p 4422" --delete ./ snetop@203.59.236.101:/var/www/html/
