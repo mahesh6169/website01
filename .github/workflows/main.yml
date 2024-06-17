@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -18,5 +18,12 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.GITRSYNCH_VCSAJMPHOST }}
 
+    - name: Add server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -p 4422 203.59.236.101 >> ~/.ssh/known_hosts
+
     - name: Rsync files to the server
       run: rsync -avz -e "ssh -p 4422" --delete ./ snetop@203.59.236.101:/var/www/html/
+
+
