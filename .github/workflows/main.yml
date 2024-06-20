@@ -24,6 +24,6 @@ jobs:
         ssh-keyscan -p 4422 203.59.236.101 >> ~/.ssh/known_hosts
 
     - name: Rsync files to the server
-      run: rsync -avz -e "ssh -p 4422" --delete ./ snetop@203.59.236.101:/var/www/html/
+      run: rsync -avz -e "ssh -p 4422" --delete --exclude='.github/'  ./ snetop@203.59.236.101:/var/www/html/website01/
 
 
